@@ -1,0 +1,73 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <h3>Select your slot</h3>
+    </mat-card-header>
+    <mat-button-toggle-group [formControl]="fontStyleControl">
+        <mat-button-toggle  class="time-slot" *ngFor= "let displayTiming of displayTimings; let i = index" value ={{displayTiming}}>{{displayTiming}}</mat-button-toggle>
+      </mat-button-toggle-group>
+      <p>Chosen time slot is {{fontStyleControl.value}}</p>
+      <mat-card-actions class="buttons">
+        <button mat-raised-button color="warn" (click)="goBack()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="requested(fontStyleControl.value)">Request</button>
+    </mat-card-actions>
+  </mat-card>
+  <!-- <mat-card class="example-card">
+    <mat-card-header>
+        <h3>Select your slot</h3>
+    </mat-card-header>
+    <mat-card-content>
+        <table>
+            <tr><td><strong>Owner Name</strong></td><td><strong>:</strong></td><td>{{chargePointDetails.owner}}</td></tr>
+            <tr><td><strong>Location</strong></td><td><strong>:</strong></td><td>{{chargePointDetails.place}}</td></tr>
+        </table>    
+        
+    </mat-card-content>
+
+  </mat-card>
+  <mat-card>
+      <mat-card-header>
+          <h3>Charge Point Details</h3>
+      </mat-card-header>
+  <mat-card-content>
+    <table>
+        <tr><td><strong>Connector Type</strong></td><td><strong>:</strong></td><td>{{chargerType}}</td></tr>
+        <tr><td><strong>Pricing</strong></td><td><strong>:</strong></td><td>{{price}}p/kWh</td></tr>
+        <tr><td><strong>Rated Power</strong></td><td><strong>:</strong></td><td>150 kW</td></tr>
+        <tr><td><strong>Current Type</strong></td><td><strong>:</strong></td><td>DC</td></tr>
+    </table>
+
+    <div class="inner-content text-center"></div>
+
+    <mat-grid-list cols="2" rowHeight="230px">
+        <mat-grid-tile>
+            <h3 class="amenity_description">Rating</h3>
+            <div class="c100 center" [ngClass]="'p'+rating*20">
+                <span>{{rating}} / 5</span>
+                <div class="slice"><div class="bar"></div><div class="fill"></div></div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <h3 class="amenity_description">Total Bookings</h3>
+            <div class="c100 center" [ngClass]="'p'+utilization">
+                <span>{{utilization}}</span>
+                <div class="slice"><div class="bar"></div><div class="fill"></div></div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-card-content>
+</mat-card> -->
+
+<mat-card class="example-card" *ngIf="amenities.length > 0">
+    <mat-card-header>
+        <h3>Amenties</h3>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-grid-list cols="3" fit>
+            <mat-grid-tile *ngFor="let icon of amenities; let indx = index">
+                <mat-icon matSuffix class="amenity_icon">{{icon.icon}}</mat-icon>
+                <div class="amenity_description">{{icon.icon_name}}</div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+</mat-card>
+    

@@ -1,0 +1,49 @@
+<div>
+    <mat-card class="example-card">
+        <mat-card-content>
+                <div id="mapContainer" #mapp>
+                    <button mat-mini-fab color="primary" class="search-icon" (click)="showSearch()">
+                        <mat-icon>youtube_searched_for
+
+                        </mat-icon>
+                    </button>
+                </div>
+                <div class="slider">
+                    <div class="carousel">
+
+                            <mat-card class="example-card" id="A{{ind}}" *ngFor="let content of slideContents; let ind = index">
+                                <mat-card-header>
+                                    <div mat-card-avatar class="example-header-image"></div>
+                                    <mat-card-title>{{content.owner}}</mat-card-title>
+                                </mat-card-header>
+                                
+                                <mat-card-content id={{$index}} (scroll)="changeLocation($index)" style="text-align: center;">
+                                    <div class="example-container">
+                                        <mat-label>{{content.place}}</mat-label>
+                                        <mat-select [(ngModel)]="charger" name="connectorType" (selectionChange) = "selectType(charger)"
+                                            placeholder="Select a Connector" >
+                                            <mat-option *ngFor="let charger of content.typesAvailable"
+                                                [value]="charger">
+                                                {{charger}} {{content.pricing}}p/kWh
+                                            </mat-option>
+                                        </mat-select>
+                                        <button mat-button color="primary">
+                                            <mat-icon style="vertical-align: middle;" (click) = "openDialog(charger, ind, content.id)">done</mat-icon>
+                                        </button>
+                                        
+    
+                                    </div>
+                                </mat-card-content>
+                              </mat-card>
+
+                          
+
+                    </div>
+                    <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& (click)=""-->
+                </div>
+
+        </mat-card-content>
+       
+    </mat-card>
+
+</div>

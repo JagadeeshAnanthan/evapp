@@ -1,0 +1,61 @@
+<mat-nav-list>
+  <div class="container">
+    <h2>Find an EV charge point</h2>
+
+        <mat-form-field class="input_form">
+          <input matInput placeholder="Location" required [(ngModel)] = "postcode" (ngModelChange)="getAddress(postcode)">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+        <div>
+          <!-- <mat-grid-list cols="1" rowHeight="2:1"> -->
+            <!-- <mat-grid-tile> -->
+              <mat-form-field class="date_input_form">
+                  <input matInput [matDatepicker]="pickerFrom" placeholder="Date">
+                  <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerFrom></mat-datepicker>
+              </mat-form-field>
+          <!-- </mat-grid-tile> -->
+          <!-- <mat-grid-tile>
+            <mat-form-field class="date_input_form">
+              <input matInput [matDatepicker]="pickerTo" placeholder="End date">
+              <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+              <mat-datepicker #pickerTo></mat-datepicker>
+          </mat-form-field>
+          </mat-grid-tile> -->
+          <!-- </mat-grid-list>   -->
+        </div>
+
+       <!--  <mat-grid-list cols="2" rowHeight="2:1" class="ngx-timepicker-field-example">
+          <mat-grid-tile>
+            <mat-form-field class="timeinput">
+              <input matInput type="time" placeholder="start time">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="timeinput">
+              <input matInput type="time" placeholder="end time">
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list> -->
+
+        <!-- <div class="ngx-timepicker-field-example">
+            <ngx-timepicker-field [defaultTime]="'11:11 am'"></ngx-timepicker-field>
+            <ngx-timepicker-field [defaultTime]="'11:11 am'"></ngx-timepicker-field>
+        </div>  -->
+      
+        <div class="type-list">
+          <div>Choose Connector</div>
+          <div id="selectType">
+            <span><mat-checkbox color="primary" [(ngModel)]="isSelectedAll" (change)="makeSelectAll();" [ngModelOptions]="{standalone: true}">Any</mat-checkbox></span>
+            <span *ngFor="let charger of chargerTypes">
+              <mat-checkbox color="primary" value="{{charger.id}}" [(ngModel)]="charger.selected" (change)="collectSelectedTypes()" [ngModelOptions]="{standalone: true}">
+                {{charger.type}}
+              </mat-checkbox>
+            </span>
+          </div>
+          <div class="login-actions">
+            <button mat-raised-button color="primary" class="search-button" (click)="redefineSearch()">Search</button>
+          </div>
+        </div>
+</div>
+</mat-nav-list>

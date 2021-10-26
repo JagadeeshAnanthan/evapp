@@ -1,0 +1,35 @@
+.done_card {
+  margin: 18% 0;  
+}
+
+.done_icon {
+  margin: 0 32%;
+  & > mat-icon {
+    font-size: 130px;
+  }
+}
+
+.done-message {
+  margin-top: 10%;
+  font-size: 20px;
+  text-align: center;
+}
+
+.payment-success {
+  margin-top: 25%;
+  margin-bottom: 50%;
+  
+}
+
+.action-button{
+  padding-top: 18px;
+  text-align: center;
+}
+
+.rating-container{
+  padding: 5% 0;
+  & mat-icon {
+    font-size: 35px;
+    padding: 12px;
+  }
+}

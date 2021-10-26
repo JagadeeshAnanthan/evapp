@@ -1,0 +1,44 @@
+<div class="container">
+    <div *ngIf="loadComplete">
+        <h4>Please Enter Your Details</h4>
+        <mat-divider></mat-divider>
+        <div class="example-container">
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name"  [formControl]="user_name">
+                <mat-error *ngIf="user_name.invalid">{{getNameErrorMessage()}}</mat-error>
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Mobile No</mat-label>
+                <input matInput placeholder="+91-Mobile No" type="tel"  [formControl]="mobile_no">
+                <mat-error *ngIf="mobile_no.invalid">{{getMobileErrorMessage()}}</mat-error>
+                <mat-icon matSuffix>smartphone</mat-icon>
+            </mat-form-field> -->
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email"  [formControl]="mail">
+                <mat-error *ngIf="user_name.invalid">{{getMailErrorMessage()}}</mat-error>
+                <mat-icon matSuffix>contact_mail</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>New Password</mat-label>
+                <input matInput placeholder="New Password" type="password" [formControl]="new_password">
+                <mat-error *ngIf="new_password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                <mat-icon matSuffix>vpn_key</mat-icon> 
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput placeholder="Confirm Password" type="password" [formControl]="confirm_password">
+                <mat-error *ngIf="new_password.invalid">{{getConfirmPasswordErrorMessage()}}</mat-error>
+                <mat-icon matSuffix>vpn_key</mat-icon> 
+            </mat-form-field>
+        </div>
+        <div class="login-actions">
+            <button mat-raised-button color="primary" (click)="registeredUser(mail.value,new_password.value)" [disabled]="isDisabled">Submit</button>
+            <a mat-raised-button color="primary" routerLink="/login">Back</a>
+        </div>
+    </div>
+</div>

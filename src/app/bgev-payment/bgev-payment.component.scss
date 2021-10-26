@@ -1,0 +1,46 @@
+.pay-button {
+    text-align: center;
+}
+
+mat-card {
+    &-header {
+        margin-right: 50%;
+        margin-left: 30%;
+    }
+    &-actions {
+        & div {
+            padding-top: 10px;
+            font-size: smaller;
+        }
+    }
+}
+
+table {
+    width: 100%;
+}
+
+tr.mat-footer-row {
+    font-weight: bold;
+}
+  
+.spinnerContainer {
+    position: fixed;
+    top: 35%;
+    & img {
+        width: 110%;
+    }
+    text-align: center;
+    color: blue;
+}
+
+.mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+
+.card-number {
+    width: 100%
+}
+.card-details {
+    width: 60%;
+    position: relative;
+}  
