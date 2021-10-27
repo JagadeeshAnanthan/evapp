@@ -85,7 +85,8 @@ const appRoutes: Routes = [
     BgEvRequestPageComponent,
     BgEvPaymentSuccessComponent,
     RequestDialogBoxComponent,
-    BgEvBookingConfirmationComponent
+    BgEvBookingConfirmationComponent,
+    BgEvChargingPageComponent
   ],
   entryComponents: [DialogContentComponent, RequestDialogBoxComponent],
   bootstrap: [AppComponent],

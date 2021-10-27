@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Directive, EventEmitter, OnInit, Output} from '@angular/core';
 import { BgEvService } from 'app/shared/bgev.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -23,6 +23,7 @@ export class BgEvRequestPageComponent implements OnInit{
     loginType: string;
     isLoggedIn: boolean;
     chargePointID;
+    contains;
     bookedSlots: any = [];
     amenities: any = [];
     displayTimings: any = [];
@@ -56,7 +57,7 @@ export class BgEvRequestPageComponent implements OnInit{
         this.chargePointID = localStorage.getItem('chargePointId');
         this.slotService.getAvailableSlots(this.chargePointID).subscribe({
             next: data => {
-                this.bookedSlots = data[0].slotStartTime;
+                    this.bookedSlots.push(data[0].SLOT_START_TIME)
                 console.log(this.bookedSlots);
             },
             error: err => {
@@ -95,6 +96,11 @@ export class BgEvRequestPageComponent implements OnInit{
         }       
     }
 
+    founded(index,time) {
+        this.contains = this.bookedSlots.includes(time)? "true" : "false";
+        return this.contains;
+        console.log(this.contains)
+    }
     openDialog(selectedSlot) {
         const dialogRef = this.dialog.open(RequestDialogBoxComponent, {
             width: '400px',

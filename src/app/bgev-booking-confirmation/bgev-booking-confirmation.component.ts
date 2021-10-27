@@ -17,14 +17,18 @@ export interface Transaction {
 export class BgEvBookingConfirmationComponent implements OnInit {
     bookingId = this.generateRandomNumber(11,99);
     startTime;
-    date = this.generateRandomNumber(1,31);
-    month = this.generateRandomNumber(1,12);
+    date = new Date();
+    day = this.date.getDate();
+    month = this.date.getMonth()+1;
+    year = this.date.getFullYear();
+
+    fullDate = `${this.day}.${this.month}.${this.year}`;
     time: any =this.randomDate(1,31,1,24);
     otp: any = this.generateRandomNumber(1001,9999);
     displayedColumns: string[] = ['item', 'value'];
     transactions: Transaction[] = [
         { item: 'Booking ID', value: `CENEV00${this.bookingId}` },
-        { item: 'Date', value: `${this.date}/${this.month}/2020` },
+        { item: 'Date', value: this.fullDate },
         { item: 'Time of Booking', value: `${this.time}` },
         { item: 'OTP', value: `${this.otp}`}
         /*{ item: 'End Time', value: `${this.endTime}` },
@@ -50,6 +54,10 @@ export class BgEvBookingConfirmationComponent implements OnInit {
 
       redirectToPayment() {
         this.router.navigate(['./payment']);
+      }
+
+      start() {
+        this.router.navigate(['./charging']);
       }
 
     ngOnInit() {

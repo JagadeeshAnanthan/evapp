@@ -1,0 +1,36 @@
+.example-h2 {
+    margin: 10px;
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  }
+  
+  .buttons {
+    margin: 0 30% 0 30%;
+}
+.container {
+  height: 100%
+}
+.charging {
+  margin-top: 30% ;
+  margin-bottom: 30%;
+}
+mat-card-header {
+  margin-right: 25%;
+  margin-left: 25%;
+}
+.spinnerContainer {
+  & img {
+      width: 100%;
+  }
+  text-align: center;
+  color: blue;
+}

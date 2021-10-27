@@ -73,12 +73,6 @@ export class BgEvMapComponent implements AfterViewInit {
   }
 
   async ngAfterViewInit() {
-    this.mapService.getSlot().subscribe({
-      next: slots => {
-        console.log(slots);
-        },
-      error: err => this.errorMessage = err
-  });
     this.defaultLayers = this.platform.createDefaultLayers();
      this.map = new H.Map(this.mapElement.nativeElement,
       this.defaultLayers.vector.normal.map, {
@@ -123,7 +117,7 @@ export class BgEvMapComponent implements AfterViewInit {
     await ref.afterDismissed().subscribe( async(position) => {
       if(position) {
         // await this.getChargepoints(position[0], position[1]);
-        await this.someFunction(position[2]);
+        await this.getChargePoints(position[2]);
 
         // this.addMarkersToMap(this.map);
         // this.zoomLocation();
@@ -192,44 +186,6 @@ export class BgEvMapComponent implements AfterViewInit {
     this.price = this[chargerType][0];
   }
 
-  async getChargepoints(latitude, longitude) {
-    const owner = ['User1', 'User2', 'User3', 'User4'];
-    this.slideContents = []; // reset the array to flush the old data
-    this.searchService.geocode({
-      q: 'petrol station',
-      at: `${latitude},${longitude}`
-    }, (result) => {
-      result.items.filter((item) => {
-        return item.distance < 13000;
-      }).sort((x, y) => {
-        if (x.distance < y.distance) {return -1;}
-        if (x.distance > y.distance) {return 1;}
-        return 0;
-      }).map((item, count) => {
-        const { lat, lng } = item.position;
-        const connectorType = [(this.connector[count]) ? this.connector[count] : this.connector[0],
-        (this.connector[count + 2]) ? this.connector[count + 2] : undefined]
-        const price = this[this.connector[count]] ? this[this.connector[count]] : this[this.connector[0]];
-        const distance = (item.distance/1000).toFixed(2);
-        const content = {
-          id: count,
-          availablity: 'Yes',
-          lat,
-          lng,
-          owner: owner[Math.floor(Math.random() * owner.length)],
-          place: item.address.label,
-          pricing: price[0],
-          typesAvailable: connectorType.filter(conn => conn !== undefined),
-          distance
-        };
-        this.slideContents.push(content);
-      });
-      
-      this.addMarkersToMap(this.map);
-      this.zoomLocation();
-    }, alert);
-  }
-
   changeLocation(index: number) {
     const currCity = this.slideContents[index];
     const { lat, lng } = currCity;
@@ -268,7 +224,7 @@ export class BgEvMapComponent implements AfterViewInit {
       });
   }
 
-  someFunction(postcode) {
+  getChargePoints(postcode) {
     this.slideContents = [];
     this.mapService.getChargePointsLocations(postcode.replace(/\s/g, "")).subscribe({
       next: chargePoints => {

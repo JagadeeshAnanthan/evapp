@@ -5,12 +5,9 @@
     </div> -->
     <div *ngIf="loadComplete">
         <mat-card class="payment">
-            <mat-card-content *ngIf="loginType != 'cp'">
+            <mat-card-content>
                 <h2 style="text-align: center;">Billing Summary</h2>
             </mat-card-content>
-            <mat-card-header *ngIf="loginType == 'cp'">
-                <h2>Reciept</h2>
-            </mat-card-header>
             <mat-card-content class="billing-detailss">
                 <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
                     <!-- Item Column -->
@@ -68,22 +65,16 @@
                                 <mat-label>Card Number</mat-label>
                                 <input matInput>
                             </mat-form-field>
-                            <table>
-                              <tr>
-                                <td>
-                                  <mat-form-field appearance="fill" class="card-details">
-                                      <mat-label>Expiry Date</mat-label>
-                                      <input matInput type="number" min="1">
-                                  </mat-form-field>
-                                </td>
-                              <td>
-                                <mat-form-field appearance="fill" class="card-details">
-                                    <mat-label>CVV</mat-label>
-                                    <input matInput type="number" maxlength="16">
-                                </mat-form-field>
-                              </td>  
-                          </tr>  
-                          </table>
+                            <table class="example-full-width" cellspacing="0"><tr>
+                              <td><mat-form-field class="example-full-width" appearance="fill" class="card-details">
+                                <mat-label>Expiry date</mat-label>
+                                <input matInput >
+                              </mat-form-field></td>
+                              <td><mat-form-field class="example-full-width" appearance="fill" class="card-details">
+                                <mat-label>CVV</mat-label>
+                                <input matInput>
+                              </mat-form-field></td>
+                            </tr></table>
                           </mat-expansion-panel>
 
                           <mat-expansion-panel (opened)="panelOpenState = true"

@@ -1,7 +1,7 @@
 <div>
     <mat-card class="payment">
         <mat-card-header>
-            <h3 (click)="redirectToPayment()">Booking Confirmation</h3>
+            <h3>Booking Confirmation</h3>
         </mat-card-header>
         <mat-card-content class="billing-detailss">
             <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
@@ -25,5 +25,8 @@
             </table>
             
         </mat-card-content>
+        <mat-card-actions class="buttons">
+            <button mat-raised-button color="primary" (click)="start()">Start charging</button>
+        </mat-card-actions>
         </mat-card>
 </div>        

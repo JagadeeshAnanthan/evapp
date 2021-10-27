@@ -21,20 +21,30 @@ export class BgEvLoginComponent implements OnInit{
     errorMessage: any;
     constructor(private router: Router, private configService: BgEvConfigService, private loginService: LoginService) {}
 
-    async login(login_id: string) {
-        /* let owner = login_id.substring(0, 6);
-        if(owner == 'evuser'){
-            console.log(owner);
-            this.router.navigate([`./evloggedin`]);
-        } else {
-            return false;
-        } */
+    async login(login_id: string, password: string) {
         let userDetails: any = {
             email: login_id,
-            validateuser: this.validateFlag
+            validateuser: this.validateFlag,
+            password: password
         }
         await this.loginService.validateUser(userDetails).subscribe(response=> {
             console.log("Response is",response);
+        });
+        this.loginService.validateUser(userDetails).subscribe({
+            next: Response => {
+            let res = [];
+            res.push(Response);
+            console.log("Res is",res);
+            if(res[0].userstatus == "LOGINSUCCESS"){
+            this.router.navigate(['./evloggedin']);
+            }
+        },
+            error: err => {
+                this.errorMessage = err;
+                console.log(err.error.userstatus)
+                this.router.navigate(['./evowner']);
+            }
+            
         });
 
     }
@@ -50,8 +60,6 @@ export class BgEvLoginComponent implements OnInit{
     }
 
     async toggle(login_id) {
-        
-        
         let userDetails: any = {
             email: login_id,
             validateuser: this.validateFlag
@@ -59,20 +67,30 @@ export class BgEvLoginComponent implements OnInit{
         this.loginService.validateUser(userDetails).subscribe({
             next: Response => {
             console.log("Response is", Response);
-            this.passwordShow = !this.passwordShow;
-            this.buttonShow = !this.buttonShow;
-            this.validateFlag = 'N'
+            let res = [];
+            res.push(Response);
+            console.log("Res is",res);
+            if(res[0].userstatus == "VALIDUSER"){
+                this.passwordShow = !this.passwordShow;
+                this.buttonShow = !this.buttonShow;
+                this.validateFlag = 'N'
+            }
+            
         },
             error: err => {
                 this.errorMessage = err;
                 console.log(err.error.userstatus)
-                this.router.navigate(['./evowner']);
+                if(err.error.userstatus == "INVALIDUSER")
+                {
+                    this.redirectToRegister;
+                }
             }
             
         });
     }
 
     ngOnInit() {
+        localStorage.clear()
         setTimeout(() => {
             this.loadComplete = true;
         }, 1500);

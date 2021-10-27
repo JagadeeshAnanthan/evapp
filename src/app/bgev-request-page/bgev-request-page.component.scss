@@ -16,7 +16,7 @@ mat-button-toggle-group {
   display: contents;
 }
 
-mat-button-toggle {
+mat-button-toggle, .not-exist {
     border: 2px #4a8318 solid !important;
     margin-top: 5px !important;
     margin-left: 5px;
@@ -27,6 +27,19 @@ mat-button-toggle {
     border-radius: 5px !important;
     align-content: center;
     color:#000
+}
+
+.exist {
+  border: 2px #000 solid !important;
+  margin-top: 5px !important;
+  margin-left: 5px;
+  margin-right:5px;
+  padding: 0 5px !important;
+  background-color: rgb(214, 27, 27) !important;
+  // z-index: 3 !important;
+  border-radius: 5px !important;
+  align-content: center;
+  color:#000
 }
 
 mat-button-toggle:hover {

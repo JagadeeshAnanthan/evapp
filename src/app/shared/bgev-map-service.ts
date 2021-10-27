@@ -68,7 +68,7 @@ export class BgevMapService {
         );
     }
 
-    public getSlot(): Observable<any[]> {
+    /* public getSlot(): Observable<any[]> {
         let url = 'https://cjr7i80ep2.execute-api.us-east-2.amazonaws.com/test/bookings?deviceid=98763636';
         return this.http.get<any[]>(url).pipe(
             tap(data => {
@@ -76,7 +76,7 @@ export class BgevMapService {
             }),
             catchError(this.handleError)
         );
-    }
+    } */
 
     private handleError(err: HttpErrorResponse) {
         let errorMessage = '';
