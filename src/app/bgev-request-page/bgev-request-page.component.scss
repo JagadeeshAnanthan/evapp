@@ -72,10 +72,17 @@ mat-card {
 //   z-index: 9999;
 // }
 .time-slot {
+  width:16%;
+  display: inline-block; 
+  text-align: center
+}
+
+.timeslot-div {
   width:16%; 
   display: inline-block; 
   text-align: center
 }
+
 h3.amenity_ {
   &description {
     position: absolute;

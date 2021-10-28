@@ -3,7 +3,7 @@
   <mat-sidenav #sidenav mode="over" class="app-sidenav" color="primary">
     <mat-toolbar>
       <mat-toolbar-row>
-        <button mat-button routerLink="/login" (click)="sidenav.toggle()" class="app-sidebar-button">Home</button>
+        <button mat-button routerLink="/login" (click)="sidenav.toggle(); logout()" class="app-sidebar-button">Logout</button>
       </mat-toolbar-row>
 
       <!-- <mat-toolbar-row>

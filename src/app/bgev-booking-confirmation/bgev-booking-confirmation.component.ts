@@ -17,6 +17,7 @@ export interface Transaction {
 export class BgEvBookingConfirmationComponent implements OnInit {
     bookingId = this.generateRandomNumber(11,99);
     startTime;
+    selectedSlot;
     date = new Date();
     day = this.date.getDate();
     month = this.date.getMonth()+1;
@@ -29,7 +30,7 @@ export class BgEvBookingConfirmationComponent implements OnInit {
     transactions: Transaction[] = [
         { item: 'Booking ID', value: `CENEV00${this.bookingId}` },
         { item: 'Date', value: this.fullDate },
-        { item: 'Time of Booking', value: `${this.time}` },
+        { item: 'Time of Booking', value: localStorage.getItem('selectedTimeSlot') },
         { item: 'OTP', value: `${this.otp}`}
         /*{ item: 'End Time', value: `${this.endTime}` },
         { item: 'Tax', value: this.currencyPipe.transform(this.tax, 'GBP')},

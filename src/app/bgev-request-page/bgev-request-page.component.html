@@ -1,10 +1,13 @@
+<div *ngIf="isDataAvailable">
 <mat-card class="example-card">
     <mat-card-header>
         <h3>Select your slot</h3>
     </mat-card-header>
     <mat-button-toggle-group [formControl]="fontStyleControl">
-        <mat-button-toggle  class="time-slot" *ngFor= "let displayTiming of displayTimings; let i = index" value ={{displayTiming}}>{{displayTiming}}</mat-button-toggle>
-      </mat-button-toggle-group>
+        <!-- <div *ngFor= "let displayTiming of displayTimings; let i = index" class="time-slot"> -->
+        <mat-button-toggle *ngFor= "let displayTiming of displayTimings; let i = index" class="time-slot" [ngClass]="founded(displayTiming) ? 'exist' : 'not-exist'" value ={{displayTiming}}>{{displayTiming}}</mat-button-toggle>
+        <!-- </div>     -->
+    </mat-button-toggle-group>
       <p>Chosen time slot is {{fontStyleControl.value}}</p>
       <mat-card-actions class="buttons">
         <button mat-raised-button color="warn" (click)="goBack()">Cancel</button>
@@ -70,4 +73,4 @@
         </mat-grid-list>
     </mat-card-content>
 </mat-card>
-    
+</div>    

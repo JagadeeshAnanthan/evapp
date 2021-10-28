@@ -80,10 +80,7 @@ export class BgEvLoginComponent implements OnInit{
             error: err => {
                 this.errorMessage = err;
                 console.log(err.error.userstatus)
-                if(err.error.userstatus == "INVALIDUSER")
-                {
-                    this.redirectToRegister;
-                }
+                this.redirectToRegister;
             }
             
         });

@@ -32,6 +32,7 @@ export class RequestDialogBoxComponent implements OnInit {
     }
     )
     this.isLoggedIn=localStorage.getItem('loggedIn');
+    localStorage.setItem('selectedTimeSlot',this.data.selectedSlot);
     if(this.isLoggedIn=='yes')
     {
       this._snackBar.open('Requested', '', {

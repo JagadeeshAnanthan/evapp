@@ -39,6 +39,7 @@ constructor(private _bottomSheetRef: MatBottomSheetRef<BgEvMapOverviewComponent>
         event.preventDefault();
     }
     redefineSearch() {
+        // localStorage.setItem('selectedDate',date);
         if (!this.location) {
             alert('Please select the location!')
         } else {

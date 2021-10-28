@@ -73,6 +73,9 @@ export class AppComponent {
       this.lastDialogResult = result;
     })
   }
+  logout() {
+    localStorage.clear();
+  }
 
   showSnackbar() {
     this._snackbar.open('YUM SNACKS', 'CHEW');

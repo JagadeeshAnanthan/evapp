@@ -257,9 +257,14 @@ export class BgEvConfigService {
         ]
     }
 
-    getAvailableAmenities() {
+    /* getAvailableAmenities() {
         let availableAmenities = [{"icon_name":"Store","icon":"shopping_cart"},{"icon_name":"Cafe","icon":"local_cafe"},{"icon_name":"Hospital","icon":"local_hospital"},{"icon_name":"Restaurant","icon":"local_dining"},{"icon_name":"Parking","icon":"local_parking"},{"icon_name":"Rest Room","icon":"wc"},{"icon_name":"Children Area","icon":"child_care"},{"icon_name":"Car Wash","icon":"local_car_wash"},{"icon_name":"Car Service","icon":"build"},{"icon_name":"ATM","icon":"atm"}];
         return availableAmenities.slice(0, Math.floor(Math.random() * availableAmenities.length));
+    } */
+
+    getAvailableAmenities() {
+        let availableAmenities = [{"icon_name":"Disabled friendly","icon":"accessible_forward"},{"icon_name":"Medical aid","icon":"local_hospital"},{"icon_name":"ATM","icon":"atm"},{"icon_name":"Parking","icon":"local_parking"},{"icon_name":"Rest Room","icon":"wc"},{"icon_name":"Membership","icon":"credit_card"},{"icon_name":"24x7","icon":"watch_later"},{"icon_name":"Car Service","icon":"build"}];
+        return availableAmenities.slice(0, Math.floor((Math.random()*0.7 + 0.4) * availableAmenities.length));
     }
 
 }

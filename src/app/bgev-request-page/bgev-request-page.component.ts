@@ -35,6 +35,8 @@ export class BgEvRequestPageComponent implements OnInit{
     chargerType = 'CCA';
     price = '20';
     errorMessage: any;
+    isDataAvailable: boolean = false;
+    disableButton: boolean = false;
     constructor(private bgevservice: BgEvService, private router: Router,
         private location: Location, private _snackBar: MatSnackBar, private configService: BgEvConfigService, public dialog: MatDialog, public slotService: SlotSlectionService) {
         this.loginType = localStorage.getItem('loginType');
@@ -42,10 +44,6 @@ export class BgEvRequestPageComponent implements OnInit{
     }
     ngOnInit(): void {
         this.bgevservice.currentData.subscribe(data => {
-            /* if (data.length === 0) {
-                this.router.navigate(['./login']);
-                return false;
-            } */
             this.chargePointDetails = data;
             this.chargerType = localStorage.getItem('chargerType')
             this.price = localStorage.getItem('price')
@@ -55,16 +53,22 @@ export class BgEvRequestPageComponent implements OnInit{
             this.setDisplayTimings();
         });
         this.chargePointID = localStorage.getItem('chargePointId');
-        this.slotService.getAvailableSlots(this.chargePointID).subscribe({
+        this.fetchEvent(this.chargePointID).then(() =>{this.isDataAvailable = true});
+        
+
+    }
+    fetchEvent(chargePointID: any) {
+        return new Promise((resolve, reject) => {
+        this.slotService.getAvailableSlots(chargePointID).subscribe({
             next: data => {
-                    this.bookedSlots.push(data[0].SLOT_START_TIME)
-                console.log(this.bookedSlots);
+                    resolve(this.bookedSlots.push(data[0].SLOT_START_TIME));
+                    console.log(this.bookedSlots);
             },
             error: err => {
-                this.errorMessage = err
+                reject(this.errorMessage = err);
             }
         })
-
+    })
     }
 
     setDisplayTimings() {
@@ -96,10 +100,18 @@ export class BgEvRequestPageComponent implements OnInit{
         }       
     }
 
-    founded(index,time) {
-        this.contains = this.bookedSlots.includes(time)? "true" : "false";
-        return this.contains;
-        console.log(this.contains)
+    founded(displayTiming) {
+        // this.contains = this.bookedSlots.includes(displayTiming)? "true" : "false";
+        // return this.contains;
+        // return !!this.bookedSlots.find(x=>x === displayTiming)
+        let match = this.bookedSlots[0].includes(displayTiming)
+        if(match ==false) {
+            this.disableButton = true;
+        }
+        else {
+            this.disableButton = false;
+        }
+        return match;
     }
     openDialog(selectedSlot) {
         const dialogRef = this.dialog.open(RequestDialogBoxComponent, {
